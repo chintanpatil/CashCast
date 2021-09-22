@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style="background-color:powderblue;"> Hello {{ user.username }}!</h1>
+<h2 style="color:black"> Simple Moving Average </h2>
+
+<!--
+Form 1: For SMA 
+	---->
+<form action='SMA' method="post" style='color: black'>
+
+	{% csrf_token %} <!-- MIDDLEWARE SERCURITY. Check Telusko's video #8--->
+
+	Enter list of numbers seperated by commas: <input type="text" name="numList"><br>
+	Enter moving window size: <input type=int name="window"><br>	
+	<input type= "submit">
+</form>
+
+<!--
+Form 2: For EMA 
+	---->
+<br>
+<h2 style="color:black"> Exponential Moving Average </h2>
+<form action='EMA' method = "post" style='color: black'>
+
+	{% csrf_token %} <!-- MIDDLEWARE SERCURITY. Check Telusko's video #8--->
+
+	Enter list of numbers seperated by commas: <input type="text" name="numList"><br>
+	Enter smoothing factor: <input type=int name="smooth"><br>	
+	<input type= "submit">
+</form>
+
+
+<!-- Upload CSV File -->
+<br>
+<h2 style="color:black"> Stochastic Financial Analytics </h2>
+<form action="SFA" method="POST" enctype="multipart/form-data" class="form-horizontal"> 
+{% csrf_token %}
+<div class="form-group">
+    <label class="col-md-3 col-sm-3 col-xs-12 control-label">Upload Customer Payments Record: </label>
+    <div class="col-md-8">
+        <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+    </div>                    
+</div>
+<div class="form-group">                    
+    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+         <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+    </div> 
+</div>
+</form>
+{% endblock %}

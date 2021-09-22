@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Here's what your Cashflow Forecast looks like</h1>
+	<canvas id="myChart"></canvas>
+</body>
+<script>
+
+{% block jquery %}
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: {{months|safe}},
+        datasets: [
+        	{
+            label: 'Actual Cashflow',
+            /*backgroundColor: 'rgb(25, 99, 132)',*/
+            borderColor: 'rgb(0, 0, 0)',
+            data: {{actual_cash|safe}},
+            lineTension: 0,
+        	},
+	        
+	        {
+            label: 'Cashflow Forecast',
+            /*backgroundColor: 'rgb(255, 99, 132)',*/
+            borderColor: 'rgb(255, 99, 132)',
+            data: {{forecast|safe}},
+            lineTension: 0,
+	        },
+
+            {
+            label: 'Cashflow Stochastic Forecast',
+            /*backgroundColor: 'rgb(255, 99, 132)',*/
+            borderColor: 'rgb(25, 99, 132)',
+            data: {{stochasticForecast|safe}},
+            borderDash: [10,5],
+            lineTension: 0,
+            },
+
+            {
+            label: 'Cashflow Bayesian Forecast',
+            /*backgroundColor: 'rgb(255, 99, 132)',*/
+            borderColor: 'rgb(255, 99, 13)',
+            data: {{bayForecast|safe}},
+            borderDash: [10,5],
+            lineTension: 0,
+            }
+        ]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+{% endblock %}
+
+</script>
+</html>

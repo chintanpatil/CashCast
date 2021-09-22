@@ -1,0 +1,9 @@
+C:\Users\chint_zl3lra3>cd Desktop
+
+C:\Users\chint_zl3lra3\Desktop>apps\venv\Scripts\activate.bat
+
+(venv) C:\Users\chint_zl3lra3\Desktop>cd apps
+
+(venv) C:\Users\chint_zl3lra3\Desktop\apps>cd CashCast
+
+(venv) C:\Users\chint_zl3lra3\Desktop\apps\CashCast>python manage.py runserver
